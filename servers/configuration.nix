@@ -105,7 +105,6 @@
   time.timeZone = "Asia/Kolkata";
   networking.firewall.enable = true;
   nix.extraOptions = "keep-outputs = true";
-  services.nix-daemon.enable = true;
 
   system.stateVersion = "25.05";
   services.journald = {
