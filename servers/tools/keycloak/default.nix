@@ -25,13 +25,13 @@ in
   users.users.postgres.extraGroups = [ "secrets" ];
 
   sops.secrets = {
-    "keycloak_db_password" = {
-      sopsFile = ../secrets/secrets-enc.yaml;
-      format = "yaml";
-      owner = config.users.users.root.name;
-      group = config.users.groups.secrets.name;
-      mode = "0440";
-    };
+    #"keycloak_db_password" = {
+    #  sopsFile = ../secrets/secrets-enc.yaml;
+    #  format = "yaml";
+    #  owner = config.users.users.root.name;
+    #  group = config.users.groups.secrets.name;
+    #  mode = "0440";
+    #};
 
     "keycloak_admin_password" = {
       sopsFile = ../secrets/secrets-enc.yaml;

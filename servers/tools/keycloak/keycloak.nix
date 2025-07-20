@@ -5,18 +5,20 @@
     enable = true;
     database = {
       createLocally = false;
-      type = "postgres";
-      host = "/run/postgresql";
+      type = "postgresql";
+      host = "127.0.0.1";
       port = 5432;
-      user = dbUser;
+      username = dbUser;
       name = dbName;
+      useSSL = false;
       passwordFile = config.sops.secrets."keycloak_db_password".path;
     };
-    initialAdminPassword.path = config.sops.secrets."keycloak_admin_password".path;
+    initialAdminPassword = "2jkvdTRxZRiTJovQh";
     settings = {
       inherit hostname;
       "http-enabled" = true;
-      proxy = "edge";
+      "http-host" = "127.0.0.1";
+      "http-port" = 8080;
       "proxy-headers" = "xforwarded";
       "log-level" = "info";
       "metrics-enabled" = true;
