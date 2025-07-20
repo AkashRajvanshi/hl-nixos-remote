@@ -93,7 +93,7 @@ in
               sans = [ "*.${domain}" ];
             }];
           };
-          http.middlewares = [ "security-headers@file" "gzip@file" ];
+          #http.middlewares = [ "security-headers@file" "gzip@file" ];
         };
         metrics = { address = ":8082"; };
       };

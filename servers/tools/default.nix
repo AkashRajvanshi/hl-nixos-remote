@@ -5,6 +5,7 @@
     ./networking.nix
     ./traefik.nix
     ./oidc-middleware.nix
+    ./komodo.nix
     ./keycloak
   ];
 
@@ -14,6 +15,15 @@
     path = "/etc/secrets/traefik.env";
     owner = "traefik";
     group = "traefik";
+    mode = "0400";
+  };
+
+  sops.secrets."komodo-extended.env" = {
+    sopsFile = ./secrets/komodo-extended.env;
+    format = "dotenv";
+    path = "/etc/secrets/komodo-extended.env";
+    owner = "root";
+    group = "root";
     mode = "0400";
   };
 

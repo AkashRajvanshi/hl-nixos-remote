@@ -15,7 +15,7 @@
     };
     initialAdminPassword = "2jkvdTRxZRiTJovQh";
     settings = {
-      inherit hostname;
+      "hostname" = "https://${hostname}";
       "http-enabled" = true;
       "http-host" = "127.0.0.1";
       "http-port" = 8080;
