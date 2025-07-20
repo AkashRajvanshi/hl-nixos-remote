@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hostname, ... }:
 
 let
   appName = "keycloak";
@@ -9,19 +9,19 @@ in
     routers = {
       "${appName}-bypass" = {
         entrypoints = [ "https" ];
-        rule = "Host(`${config.nix-keycloak.hostname}`) && (PathPrefix(`/js/`) || PathPrefix(`/realms/`) || PathPrefix(`/resources/`))";
+        rule = "Host(`${hostname}`) && (PathPrefix(`/js/`) || PathPrefix(`/realms/`) || PathPrefix(`/resources/`))";
         service = appName;
         priority = 100;
       };
       "${appName}-main" = {
         entrypoints = [ "https" ];
-        rule = "Host(`${config.nix-keycloak.hostname}`)";
+        rule = "Host(`${hostname}`)";
         service = appName;
         priority = 99;
       };
       "${appName}-insecure" = {
         entrypoints = [ "http" ];
-        rule = "Host(`${config.nix-keycloak.hostname}`)";
+        rule = "Host(`${hostname}`)";
         service = appName;
         middlewares = [ "redirect-to-https" ];
       };

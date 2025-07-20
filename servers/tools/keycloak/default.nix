@@ -6,6 +6,7 @@ let
   dbName = "keycloak";
 in
 {
+  _module.args = { inherit hostname dbUser dbName; };
   imports = [
     ./postgres.nix
     ./keycloak.nix

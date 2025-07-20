@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, dbUser, dbName, ... }:
 
 {
   services.postgresql = {
@@ -13,14 +13,14 @@
       host    all             all             ::1/128                 scram-sha-256
     '';
 
-    ensureDatabases = [ config.nix-keycloak.dbName ];
+    ensureDatabases = [ dbName ];
     ensureUsers = [{
-      name = config.nix-keycloak.dbUser;
+      name = dbUser;
       passwordFile = config.sops.secrets."keycloak_db_password".path;
     }];
 
     initialScript = pkgs.writeText "keycloak-db-init" ''
-      GRANT ALL PRIVILEGES ON DATABASE "${config.nix-keycloak.dbName}" TO "${config.nix-keycloak.dbUser}";
+      GRANT ALL PRIVILEGES ON DATABASE "${dbName}" TO "${dbUser}";
     '';
   };
 }

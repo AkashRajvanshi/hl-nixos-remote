@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hostname, dbUser, dbName, ... }:
 
 {
   services.keycloak = {
@@ -8,13 +8,13 @@
       type = "postgres";
       host = "/run/postgresql";
       port = 5432;
-      user = config.services.postgresql.ensureUsers."${config.nix-keycloak.dbUser}".name;
-      name = config.nix-keycloak.dbName;
+      user = dbUser;
+      name = dbName;
       passwordFile = config.sops.secrets."keycloak_db_password".path;
     };
     initialAdminPassword.path = config.sops.secrets."keycloak_admin_password".path;
     settings = {
-      hostname = config.nix-keycloak.hostname;
+      inherit hostname;
       "http-enabled" = true;
       proxy = "edge";
       "proxy-headers" = "xforwarded";
