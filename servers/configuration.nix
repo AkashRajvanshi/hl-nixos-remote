@@ -20,13 +20,21 @@
     device = "nodev";  # Required for EFI
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12.override {
-    kernel = pkgs.linux_6_12.override {
+  boot.kernelPackages =
+    pkgs.linuxPackages_6_1 or
+    pkgs.linuxPackages_latest;
+
+  boot.kernelPackages = let
+    baseKernel =
+      pkgs.linux_6_1 or
+      pkgs.linux_latest;
+    customKernel = baseKernel.override {
       structuredExtraConfig = with pkgs.lib.kernel; {
         MODULES = yes;
       };
     };
-  };
+  in pkgs.linuxPackagesFor customKernel;
+
 
   home-manager = {
     useUserPackages = true;
