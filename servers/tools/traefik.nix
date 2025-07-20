@@ -21,12 +21,20 @@ in
   users.users.traefik.extraGroups = [ "docker" ];
 
   systemd.tmpfiles.rules = [
-      "d /var/lib/traefik 0700 traefik traefik - -"
+      "d /var/lib/traefik 0750 traefik traefik - -"
       "Z /var/lib/traefik/acme.json 0600 traefik traefik - -"
       "Z /var/lib/traefik/acme-staging.json 0600 traefik traefik - -"
       "d /var/log/traefik 0755 traefik traefik - -"
       "Z /var/log/traefik/access.log 0644 traefik traefik - -"
+      "d /etc/traefik/dynamic 0755 traefik traefik - -" 
     ];
+
+  systemd.services.traefik.serviceConfig.WorkingDirectory = config.services.traefik.dataDir;
+
+  environment.etc."traefik/dynamic/base.yaml" = {
+      source = (pkgs.formats.yaml {}).generate "base.yaml" config.services.traefik.dynamicConfigOptions;
+      mode = "0444";
+    };
 
   services.traefik = {
     enable = true;
@@ -157,19 +165,6 @@ in
           };
 
           gzip = { compress = {}; };
-
-         # oidc-auth = {
-         #   plugin.traefik-oidc-auth = {
-         #     Provider = {
-         #       Url = "https://nix-keycloak.${domain}/realms/master";
-         #       ClientId = "nix-traefik";
-         #       ClientSecret = "\${CLIENT_SECRET}";
-         #       UsePkce = true;
-         #       ValidAudience = "account";
-         #     };
-         #     Scopes = [ "openid" "profile" "email" ];
-         #   };
-         # };
 
           traefik-auth = {
             basicAuth = {

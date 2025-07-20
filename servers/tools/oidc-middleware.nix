@@ -20,11 +20,14 @@
       UsePkce = true
       ValidAudience = "account"
     '';
-    #owner = "traefik";
-    #group = config.services.traefik.group;
+    owner = "traefik";
+    group = "traefik";
+    mode = "0600";
   };
 
   environment.etc."traefik/dynamic/oidc-middleware.toml" = {
     source = config.sops.templates."oidc-middleware.toml".path;
+    user = "traefik";
+    group = "traefik";
   };
 }
