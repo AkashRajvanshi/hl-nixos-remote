@@ -4,8 +4,8 @@
     enable = true;
     autocd = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
     history = {
       extended = true;
@@ -15,7 +15,7 @@
       ignoreDups = true;
       ignoreSpace = true;
     };
-    initExtra = ''
+    initContent = ''
       bindkey '^w' forward-word
       bindkey '^b' backward-kill-word
       bindkey '^f' autosuggest-accept

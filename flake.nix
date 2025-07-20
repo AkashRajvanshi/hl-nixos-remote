@@ -77,7 +77,7 @@
         };
         hl-nixos = mkColmenaConfig {
           host = "hl-nixos";
-          buildOnTarget = true;
+          buildOnTarget = false;
           hostModule = ./servers/tools;
           extraModules = [
             sops-nix.nixosModules.sops
