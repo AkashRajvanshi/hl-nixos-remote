@@ -2,6 +2,7 @@
   modulesPath,
   lib,
   pkgs,
+  config,
   ...
 }:
 {
@@ -16,16 +17,16 @@
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
-    kernelPackages = pkgs.linuxPackages_6_12.override {
-      kernel = pkgs.linux_6_12.override {
+    device = "nodev";  # Required for EFI
+  };
+
+  boot.kernelPackages = pkgs.linuxPackages_6_12.override {
+    kernel = pkgs.linux_6_12.override {
       structuredExtraConfig = with pkgs.lib.kernel; {
         MODULES = yes;
       };
     };
   };
-  };
-
-
 
   home-manager = {
     useUserPackages = true;
