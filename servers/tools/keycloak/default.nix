@@ -7,8 +7,8 @@ let
 in
 {
   imports = [
+    ./postgres.nix
     ./keycloak.nix
-    ./postgresql.nix
     ./traefik.nix
   ];
 

@@ -162,7 +162,7 @@ in
               Provider = {
                 Url = "https://nix-keycloak.${domain}/realms/master";
                 ClientId = "nix-traefik";
-                ClientSecret = "${CLIENT_SECRET}";
+                ClientSecret = "\${CLIENT_SECRET}";
                 UsePkce = true;
                 ValidAudience = "account";
               };

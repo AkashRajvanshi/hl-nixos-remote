@@ -1,5 +1,5 @@
 keys:
-  - &tools age198duyxwapx44ly7sh03xxegklwwnk9fv36q7u28jcrcll9k9p54qyfhxvu
+  - &tools age1jghhfq9pjd6gzht3z8tc638hmpxuzu7w7avx4gmtheqwqczewe6qzvl4j2
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|yml|pem|env)$
     key_groups:
