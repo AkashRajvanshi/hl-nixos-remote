@@ -104,6 +104,7 @@ in
           exposedByDefault = false;
         };
         file = {
+          directory = "/etc/traefik/dynamic";
           watch = true;
         };
       };
@@ -157,18 +158,18 @@ in
 
           gzip = { compress = {}; };
 
-          oidc-auth = {
-            plugin.traefik-oidc-auth = {
-              Provider = {
-                Url = "https://nix-keycloak.${domain}/realms/master";
-                ClientId = "nix-traefik";
-                ClientSecret = "\${CLIENT_SECRET}";
-                UsePkce = true;
-                ValidAudience = "account";
-              };
-              Scopes = [ "openid" "profile" "email" ];
-            };
-          };
+         # oidc-auth = {
+         #   plugin.traefik-oidc-auth = {
+         #     Provider = {
+         #       Url = "https://nix-keycloak.${domain}/realms/master";
+         #       ClientId = "nix-traefik";
+         #       ClientSecret = "\${CLIENT_SECRET}";
+         #       UsePkce = true;
+         #       ValidAudience = "account";
+         #     };
+         #     Scopes = [ "openid" "profile" "email" ];
+         #   };
+         # };
 
           traefik-auth = {
             basicAuth = {

@@ -4,6 +4,7 @@
   imports = [
     ./networking.nix
     ./traefik.nix
+    ./oidc-middleware.nix
     ./keycloak
   ];
 
