@@ -17,24 +17,8 @@
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
-    device = "nodev";  # Required for EFI
+    device = "nodev";
   };
-
-  boot.kernelPackages =
-    pkgs.linuxPackages_6_1 or
-    pkgs.linuxPackages_latest;
-
-  boot.kernelPackages = let
-    baseKernel =
-      pkgs.linux_6_1 or
-      pkgs.linux_latest;
-    customKernel = baseKernel.override {
-      structuredExtraConfig = with pkgs.lib.kernel; {
-        MODULES = yes;
-      };
-    };
-  in pkgs.linuxPackagesFor customKernel;
-
 
   home-manager = {
     useUserPackages = true;
