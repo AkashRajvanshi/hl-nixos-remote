@@ -16,7 +16,16 @@
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
+    kernelPackages = pkgs.linuxPackages_6_12.override {
+      kernel = pkgs.linux_6_12.override {
+      structuredExtraConfig = with pkgs.lib.kernel; {
+        MODULES = yes;
+      };
+    };
   };
+  };
+
+
 
   home-manager = {
     useUserPackages = true;
@@ -101,6 +110,12 @@
       ];
     }
   ];
+
+  system.extraDependencies = with config.boot.kernelPackages; [
+    kernel
+    kernel.dev
+  ];
+
 
   time.timeZone = "Asia/Kolkata";
   networking.firewall.enable = true;
