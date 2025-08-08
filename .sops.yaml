@@ -1,7 +1,7 @@
 keys:
   - &tools age1jghhfq9pjd6gzht3z8tc638hmpxuzu7w7avx4gmtheqwqczewe6qzvl4j2
 creation_rules:
-  - path_regex: 'secrets/.*\.(yaml|yml|pem|env|toml)$'
+  - path_regex: 'servers/tools/secrets/.*\.(yaml|yml|pem|env|toml)$'
     key_groups:
       - age:
           - *tools

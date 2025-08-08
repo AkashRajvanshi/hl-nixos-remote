@@ -4,7 +4,7 @@ let
   komodoVersion = "1.18.4";
 in
 {
-  environment.etc."secrets/komodo-extended.env".source = ./secrets/komodo-extended.env;
+  environment.etc."secrets/komodo-extended.env".source = ./secrets/komodo-enc.env;
   environment.etc."secrets/komodo-base.env".source = ./secrets/komodo-base.env;
 
   virtualisation.oci-containers.containers = {

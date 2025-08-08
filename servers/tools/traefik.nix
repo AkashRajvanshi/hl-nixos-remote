@@ -17,7 +17,7 @@ let
 in
 {
   networking.firewall.allowedTCPPorts = [ 80 443 8082 ];
-  environment.etc."secrets/traefik.env".source = ./secrets/traefik.env;
+  environment.etc."secrets/traefik-enc.env".source = ./secrets/traefik-enc.env;
   users.users.traefik.extraGroups = [ "docker" ];
 
   systemd.tmpfiles.rules = [
@@ -26,7 +26,7 @@ in
       "Z /var/lib/traefik/acme-staging.json 0600 traefik traefik - -"
       "d /var/log/traefik 0755 traefik traefik - -"
       "Z /var/log/traefik/access.log 0644 traefik traefik - -"
-      "d /etc/traefik/dynamic 0755 traefik traefik - -" 
+      "d /etc/traefik/dynamic 0755 traefik traefik - -"
     ];
 
   systemd.services.traefik.serviceConfig.WorkingDirectory = config.services.traefik.dataDir;

@@ -10,7 +10,7 @@
   ];
 
   sops.secrets."traefik.env" = {
-    sopsFile = ./secrets/traefik.env;
+    sopsFile = ./secrets/traefik-enc.env;
     format = "dotenv";
     path = "/etc/secrets/traefik.env";
     owner = "traefik";
@@ -19,7 +19,7 @@
   };
 
   sops.secrets."komodo-extended.env" = {
-    sopsFile = ./secrets/komodo-extended.env;
+    sopsFile = ./secrets/komodo-enc.env;
     format = "dotenv";
     path = "/etc/secrets/komodo-extended.env";
     owner = "root";
