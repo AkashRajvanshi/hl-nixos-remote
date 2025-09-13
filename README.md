@@ -26,7 +26,7 @@ This configuration deploys a service-oriented homelab using the following key co
 * **Reverse Proxy:** [Traefik](https://traefik.io/traefik/) for routing traffic to services.
 * **Identity & Access:** [Keycloak](https://www.keycloak.org/) for centralized authentication, secured with `oidc-middleware`.
 * **Database:** [PostgreSQL](https://www.postgresql.org/) for persistent data storage.
-* **Source Control:** [Gitea](https://gitea.io/) for self-hosted Git repositories.
+* **Komodo:** [Komodo]([https://gitea.io/](https://komo.do/)) for a Docker-based build and deployment system.
 
 ---
 
